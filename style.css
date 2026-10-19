@@ -1,0 +1,281 @@
+/* Base & Resets */
+:root {
+  --primary: #FFD600;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  cursor: none; /* Hide default cursor to use custom one */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #333;
+}
+
+/* Background Grid */
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* Text Highlighting in What We Do */
+.paragraph-highlight .hover-highlight {
+  position: relative;
+  display: inline-block;
+}
+.paragraph-highlight .hover-highlight::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+.paragraph-highlight .hover-highlight:hover {
+  color: var(--primary);
+}
+.paragraph-highlight .hover-highlight:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px) translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(-50%);
+  }
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+@keyframes spinSlowReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+.animate-spin-slow-reverse {
+  animation: spinSlowReverse 25s linear infinite;
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.animate-bounce-slow {
+  animation: bounceSlow 3s ease-in-out infinite;
+}
+
+/* Neon Glow Effects */
+.neon-text-glow {
+  text-shadow: 0 0 10px rgba(255, 214, 0, 0.5), 0 0 20px rgba(255, 214, 0, 0.3);
+  animation: pulse-glow 2s infinite alternate;
+}
+@keyframes pulse-glow {
+  from { text-shadow: 0 0 10px rgba(255, 214, 0, 0.5), 0 0 20px rgba(255, 214, 0, 0.3); }
+  to { text-shadow: 0 0 15px rgba(255, 214, 0, 0.8), 0 0 30px rgba(255, 214, 0, 0.5); }
+}
+
+/* Services Card 3D Tilt */
+.service-card {
+  transition: transform 0.1s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--primary), #FF2D92);
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.service-card:hover::before {
+  opacity: 1;
+}
+.service-card:hover {
+  box-shadow: 0 0 30px rgba(255, 45, 146, 0.4);
+}
+.service-card .corner-accent {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.service-card:hover .corner-accent {
+  opacity: 1;
+}
+
+/* Scroll Reveal Classes */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Social Icon sizing */
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Mobile adjust */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .service-card { transform: none !important; }
+}
+
+/* Light mode: neon text fallback */
+.dark .neon-text-glow {
+  text-shadow: 0 0 10px rgba(255, 214, 0, 0.5), 0 0 20px rgba(255, 214, 0, 0.3);
+}
+neon-text-glow {
+  text-shadow: 0 0 6px rgba(255, 214, 0, 0.35);
+}
+
+/* Animated logo styles */
+.logo-letters {
+  display: inline-block;
+  color: #000;
+  animation: logo-bounce 2.2s ease-in-out infinite alternate;
+}
+.logo-glow {
+  display: inline-block;
+  background: linear-gradient(90deg, #FFD600, #FF2D92, #00E5FF);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: logo-text-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logo-bounce {
+  from { transform: scale(1) rotate(-1deg); }
+  to { transform: scale(1.05) rotate(1deg); }
+}
+
+@keyframes logo-text-glow {
+  from { text-shadow: 0 0 8px rgba(255,214,0,0.5); }
+  to { text-shadow: 0 0 18px rgba(0,229,255,0.6); }
+}
+
+.section-title h2 {
+  transform: translate3d(0, 40px, -40px) rotateX(22deg);
+  opacity: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.reveal.active .section-title h2 {
+  transform: translate3d(0, 0, 0) rotateX(0deg);
+  opacity: 1;
+}
+
+.portfolio-row-left {
+  animation: slide-left 12s ease-in-out infinite alternate;
+}
+
+.portfolio-row-right {
+  animation: slide-right 12s ease-in-out infinite alternate;
+}
+
+@keyframes slide-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-8px); }
+}
+
+@keyframes slide-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(8px); }
+}
+
+#audio-control {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#audio-control:hover {
+  transform: translateY(-2px);
+  background-color: rgba(255,255,255,0.11);
+}
+
+#audio-control i {
+  color: #FFD600;
+}
+
+#audio-control span {
+  white-space: nowrap;
+}
+
+/* Welcome overlay smooth fade */
+#welcome-overlay {
+  transition: opacity 0.7s ease-in-out;
+}
