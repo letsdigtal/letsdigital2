@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded',()=>{
+ // Avenue Roofing V1.0.1 - Reusable Workspace JS - mobile menu + FAQ + tabs + forms
   // mobile menu
   const ham=document.querySelector('.hamburger');
   const mobile=document.querySelector('.mobile-menu');
